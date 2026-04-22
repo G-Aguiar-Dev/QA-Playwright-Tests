@@ -10,13 +10,14 @@ Projeto de automação de testes end-to-end para o [SauceDemo](https://www.sauce
 
 ## Sobre o projeto
 
-Este repositório apresenta um fluxo de login automatizado com diferentes perfis de usuário, evidências de falha e integração com GitHub Actions. A proposta é servir como peça de portfólio, mostrando organização, legibilidade e boas práticas de automação.
+Este repositório apresenta fluxos automatizados de autenticação e compra, com geração de evidências em caso de falha para apoiar troubleshooting (Trace, Vídeo do teste e Screenshot do erro), além de integração com GitHub Actions. A proposta é servir como peça de portfólio, mostrando organização, legibilidade e boas práticas de automação.
 
 ## Cenários cobertos
 
 - Login com sucesso.
 - Login com usuário bloqueado.
 - Validação de mensagens de erro.
+- Fluxo completo de compra, do login à confirmação do pedido.
 
 ## Estrutura do projeto
 
@@ -25,8 +26,14 @@ Este repositório apresenta um fluxo de login automatizado com diferentes perfis
 ├── .github/workflows/
 │   └── playwright.yml
 ├── pages/                     # Page Objects
-│   ├── login.page.ts
+│   ├── cartPage.ts
+│   ├── checkoutCompletePage.ts
+│   ├── checkoutOverviewPage.ts
+│   ├── checkoutPage.ts
+│   ├── inventoryPage.ts
+│   └── loginPage.ts
 ├── tests/
+│   ├── purchase_flow.spec.ts
 │   ├── login.spec.ts
 ├── fixtures/
 │   └── users.json             # dados de teste (usuários, senhas)
@@ -79,8 +86,10 @@ O GitHub Actions executa os testes automaticamente em `push` e `pull request` na
 - Uso de TypeScript em testes e Page Objects.
 - Organização do código com Page Object Model.
 - Validação de fluxos de autenticação e mensagens de erro.
+- Cobertura de um fluxo de compra completo com navegação entre páginas.
+- Uso de objetos de página para ações reutilizáveis em login, carrinho e checkout.
 - Execução cross-browser com suporte a múltiplos navegadores.
-- Geração de evidências para depuração com trace, vídeo e screenshot.
+- Geração de evidências para depuração e troubleshooting com trace, vídeo e screenshot quando o teste falha.
 - Integração contínua com GitHub Actions.
 
 ## Licença
